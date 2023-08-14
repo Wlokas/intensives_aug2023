@@ -1,6 +1,11 @@
 package ru.yandex.tasks;
 
 public class Task8BinarySearch {
+
+    public static void main(String[] args) {
+        selfCheck();
+    }
+
     public static int find(int number, int[] sortedList) {
         /*
          * number: целое число, -10^5 <= number <= 10^5
@@ -8,8 +13,21 @@ public class Task8BinarySearch {
          * Выход: i, где numbers[i] = number, -1, если такого i нет
          * Если таких i несколько, вывести наибольший
          */
-        // (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ WRITE CODE HERE (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-        return -1;
+        int ans = -1;
+        int left = 0;
+        int right = sortedList.length - 1;
+        while (left <= right) {
+            int middle = (left + right) / 2;
+            if (sortedList[middle] > number) {
+                right = middle - 1;
+            } else if (sortedList[middle] < number) {
+                left = middle + 1;
+            } else {
+                ans = middle;
+                break;
+            }
+        }
+        return ans;
     }
 
     public static void selfCheck() {
